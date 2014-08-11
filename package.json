@@ -20,7 +20,8 @@
     "url": "https://github.com/livingyang/cocos2d-coffee/issues"
   },
   "homepage": "https://github.com/livingyang/cocos2d-coffee",
-  "devDependencies": {
-    "coffee-script": "^1.7.1"
+  "dependencies": {
+    "coffee-script": "^1.7.1",
+    "commander": "~2.3.0"
   }
 }
