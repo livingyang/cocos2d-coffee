@@ -1,8 +1,10 @@
 {
   "name": "cocos2d-coffee",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "use coffeescript to develop cocos2d-js project.",
-  "main": "index.js",
+  "bin": {
+    "coco": "./bin/coco"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
