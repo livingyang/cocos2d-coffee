@@ -1,0 +1,15 @@
+#!/usr/bin/env node
+
+program = require("commander")
+program.option("-f, --force", "force installation").parse(process.argv);
+pkgs = program.args
+unless pkgs.length
+  console.error "packages required"
+  process.exit 1
+console.log()
+console.log "  force: install"  if program.force
+pkgs.forEach (pkg) ->
+  console.log "  install : %s", pkg
+  return
+
+console.log()

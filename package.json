@@ -1,6 +1,6 @@
 {
   "name": "cocos2d-coffee",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "use coffeescript to develop cocos2d-js project.",
   "bin": {
     "coco": "./bin/coco"
@@ -24,6 +24,8 @@
   "homepage": "https://github.com/livingyang/cocos2d-coffee",
   "dependencies": {
     "coffee-script": "^1.7.1",
-    "commander": "~2.3.0"
+    "commander": "~2.3.0",
+    "gulp": "^3.8.7",
+    "shelljs": "^0.3.0"
   }
 }
