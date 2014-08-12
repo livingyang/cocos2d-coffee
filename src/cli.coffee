@@ -1,3 +1,4 @@
+fs = require 'fs'
 program = require 'commander'
 shell = require 'shelljs'
 nconf = require 'nconf'
@@ -13,46 +14,49 @@ setConfig = (name, value) ->
 
 gulpdir = path.join __dirname, '..', 'gulp'
 templatedir = path.join __dirname, '..', 'template'
+packagefile = path.join __dirname, '..', 'package.json'
 
 program
-  .version('0.0.1')
+  .version (JSON.parse fs.readFileSync packagefile).version
 
 program
   .command('create <name>')
   .description('create a coco project.')
   .action (name) ->
-    oldDir = path.join templatedir, '*'
+    oldDir = path.join templatedir
     newDir = path.join './', name
-    shell.cp '-R', oldDir, newDir
-    console.log 'To view coco project:'
-    console.log "  cd #{name}"
+    shell.exec "cp -R #{oldDir} #{newDir}", ->
+      console.log 'To view coco project:'
+      console.log "  cd #{name}"
 
 program
   .command('compile')
   .description('compile app/*.coffee to app.js and copy files to cocos project folder.')
   .action ->
-    shell.exec "gulp compile --cwd #{gulpdir} --silent --color", async: true
+    console.log gulpdir
+    shell.exec "gulp compile --cwd #{gulpdir} --silent --color", ->
+      console.log 'Compile done.'
 
 program
   .command('clean')
   .description('clean cocos project folder.')
   .action ->
-    shell.exec "gulp clean --cwd #{gulpdir} --silent --color", async: true
+    shell.exec "gulp clean --cwd #{gulpdir} --silent --color", ->
+      console.log 'Clean done.'
 
 program
   .command('publish')
   .description('publish cocos html5 project to folder.')
   .action ->
-    shell.exec "gulp publish --cwd #{gulpdir} --silent --color", async: true
+    shell.exec "gulp publish --cwd #{gulpdir} --silent --color", ->
+      console.log 'Publish done.'
 
 program
   .command('doctor')
   .description('check coco project.')
   .action ->
-    shell.exec "gulp doctor --cwd #{gulpdir} --silent --color", async: true
-    # cocosDir = nconf.get 'compile'
-    #
-    # console.log "cocosDir is : #{cocosDir}"
+    shell.exec "gulp doctor --cwd #{gulpdir} --silent --color", ->
+      console.log 'Doctor done.'
 
 program
   .command 'config'
