@@ -7,3 +7,8 @@ FAQ
 ===
 
 global gulp must be newest
+
+TODO
+====
+
+npm publish will rename .gitignore to .npmignore, how to add .gitignore to ignore .coco file?

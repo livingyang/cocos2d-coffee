@@ -1,16 +1,9 @@
 fs = require 'fs'
 program = require 'commander'
 shell = require 'shelljs'
-nconf = require 'nconf'
 path = require 'path'
 
-nconf.file '.coco'
-setConfig = (name, value) ->
-  if value?
-    if typeof value is 'string'
-      nconf.set name, value
-    else
-      nconf.clear name
+config = (require './config').config
 
 gulpdir = path.join __dirname, '..', 'gulp'
 templatedir = path.join __dirname, '..', 'template'
@@ -64,10 +57,17 @@ program
   .option '-c, --compile [value]', '*.coffee will compile to cocos2d project folder.'
   .option '-p, --publish [value]', 'cocos2d html5 release folder.'
   .action (command) ->
-    setConfig 'compile', command.compile
-    setConfig 'publish', command.publish
-    nconf.save()
+    if typeof command.compile is 'string'
+      config.setCompile command.compile
+    else if command.compile?
+      config.clearCompile()
+
+    if typeof command.publish is 'string'
+      config.setPublish command.publish
+    else if command.publish?
+      config.clearPublish()
+
     console.log 'Project config done:'
-    console.log nconf.load()
+    console.log config.load()
 
 program.parse(process.argv);
