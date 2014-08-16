@@ -20,11 +20,11 @@ config =
     nconf.clear 'publish'
     nconf.save()
 
-  setDir: (dir) ->
+  file: (dir) ->
     nconf.file path.join dir, '.coco'
 
   load: ->
     nconf.load()
 
-config.setDir '.'
+config.file '.'
 @config = config

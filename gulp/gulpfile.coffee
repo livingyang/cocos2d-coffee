@@ -1,7 +1,7 @@
 gulp = require 'gulp'
 config = (require '../src/config').config
 
-config.setDir process.env.INIT_CWD
+config.file process.env.INIT_CWD
 
 console.log 'gulp INIT_CWD: ' + process.env.INIT_CWD
 
