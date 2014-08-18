@@ -2,22 +2,15 @@ nconf = require 'nconf'
 path = require 'path'
 
 config =
-  setCompile: (value) ->
-    nconf.set 'compile', value
-    nconf.save()
-  getCompile: ->
-    nconf.get 'compile'
-  clearCompile: ->
-    nconf.clear 'compile'
+  set: (key, value) ->
+    nconf.set key, value
     nconf.save()
 
-  setPublish: (value) ->
-    nconf.set 'publish', value
-    nconf.save()
-  getPublish: ->
-    nconf.get 'publish'
-  clearPublish: ->
-    nconf.clear 'publish'
+  get: (key) ->
+    nconf.get key
+
+  clear: (key) ->
+    nconf.clear key
     nconf.save()
 
   file: (dir) ->

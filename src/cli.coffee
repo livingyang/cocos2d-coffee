@@ -24,15 +24,15 @@ program
 
 program
   .command('compile')
+  .option '-u, --uglify', 'uglify all js files.'
   .description('compile app/*.coffee to app.js and copy files to cocos project folder.')
-  .action ->
-    console.log gulpdir
-    shell.exec "gulp compile --cwd #{gulpdir} --silent --color", ->
+  .action (command) ->
+    shell.exec "gulp #{if command.uglify then 'release' else 'debug'} --cwd #{gulpdir} --silent --color", ->
       console.log 'Compile done.'
 
 program
   .command('clean')
-  .description('clean cocos project folder.')
+  .description('clean cocos2d res folder.')
   .action ->
     shell.exec "gulp clean --cwd #{gulpdir} --silent --color", ->
       console.log 'Clean done.'
@@ -51,23 +51,24 @@ program
     shell.exec "gulp doctor --cwd #{gulpdir} --silent --color", ->
       console.log 'Doctor done.'
 
+setConfig = (key, value) ->
+  if typeof value is 'string'
+    config.set key, value
+  else if value?
+    config.clear key
+
 program
   .command 'config'
   .description 'set config'
-  .option '-c, --compile [value]', '*.coffee will compile to cocos2d project folder.'
+  .option '-c, --cocos2d [value]', 'cocos2d project dir.'
   .option '-p, --publish [value]', 'cocos2d html5 release folder.'
   .action (command) ->
-    if typeof command.compile is 'string'
-      config.setCompile command.compile
-    else if command.compile?
-      config.clearCompile()
-
-    if typeof command.publish is 'string'
-      config.setPublish command.publish
-    else if command.publish?
-      config.clearPublish()
+    setConfig 'cocos2d', command.cocos2d
+    setConfig 'publish', command.publish
 
     console.log 'Project config done:'
     console.log config.load()
 
 program.parse(process.argv);
+
+program.help() if program.args.length is 0
