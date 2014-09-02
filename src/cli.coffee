@@ -21,52 +21,37 @@ program
     shell.exec "cp -R #{oldDir} #{newDir}", ->
       console.log 'To view coco project:'
       console.log "  cd #{name}"
+      
+program
+  .command 'build [DIR]'
+  .description 'build app/*.coffee to DIR/src/app.js and copy res/ to DIR/res/.'
+  .option '-u, --uglify', 'uglify DIR/src/app.js.'
+  .action (buildDir, command) ->
+    config.set 'build', buildDir if buildDir?
+
+    if (config.get 'build')?
+      shell.exec "gulp #{if command.uglify then 'release' else 'debug'} --cwd #{gulpdir} --silent --color", ->
+        console.log 'Build done.'
+    else
+      console.log 'please input build dir.'
 
 program
-  .command('compile')
-  .option '-u, --uglify', 'uglify all js files.'
-  .description('compile app/*.coffee to app.js and copy files to cocos project folder.')
-  .action (command) ->
-    shell.exec "gulp #{if command.uglify then 'release' else 'debug'} --cwd #{gulpdir} --silent --color", ->
-      console.log 'Compile done.'
+  .command('publish [DIR]')
+  .description('publish cocos html5 project to DIR.')
+  .option '-s, --save', 'save DIR to .coco config file.'
+  .action (publishDir, command) ->
+    config.set 'publish', publishDir if publishDir?
 
-program
-  .command('clean')
-  .description('clean cocos2d res folder.')
-  .action ->
-    shell.exec "gulp clean --cwd #{gulpdir} --silent --color", ->
-      console.log 'Clean done.'
-
-program
-  .command('publish')
-  .description('publish cocos html5 project to folder.')
-  .action ->
-    shell.exec "gulp publish --cwd #{gulpdir} --silent --color", ->
-      console.log 'Publish done.'
+    if (config.get 'publish')?
+      shell.exec "gulp publish --cwd #{gulpdir} --silent --color", ->
+        console.log 'Publish done.'
+    else
+      console.log 'please input publish dir.'
 
 program
   .command('doctor')
   .description('check coco project.')
   .action ->
-    shell.exec "gulp doctor --cwd #{gulpdir} --silent --color", ->
-      console.log 'Doctor done.'
-
-setConfig = (key, value) ->
-  if typeof value is 'string'
-    config.set key, value
-  else if value?
-    config.clear key
-
-program
-  .command 'config'
-  .description 'set config'
-  .option '-c, --cocos2d [value]', 'cocos2d project dir.'
-  .option '-p, --publish [value]', 'cocos2d html5 release folder.'
-  .action (command) ->
-    setConfig 'cocos2d', command.cocos2d
-    setConfig 'publish', command.publish
-
-    console.log 'Project config done:'
     console.log config.load()
 
 program.parse(process.argv);

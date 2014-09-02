@@ -12,22 +12,24 @@ path = require 'path'
 process.chdir process.env.INIT_CWD
 config.file '.'
 
-cocos2dDir = (config.get 'cocos2d') ? '../compile'
-getCocos2dPath = (lastPath) ->
-  path.join cocos2dDir, lastPath
+buildDir = (config.get 'build') ? './build'
+getCocos2dPath = (lastPath = '.') ->
+  path.join buildDir, lastPath
 
-publishDir = (config.get 'publish') ? '../publish'
-getPublishPath = (lastPath) ->
+publishDir = (config.get 'publish') ? './publish'
+getPublishPath = (lastPath = '.') ->
   path.join publishDir, lastPath
 
 compileScripts = (isUglify) ->
+  console.log "Building to: #{path.resolve buildDir}"
+
   # main.coffee to main.js
   pipe = gulp
     .src 'main.coffee'
     .pipe coffee()
     .pipe concat 'main.js'
   pipe = pipe.pipe uglify() if isUglify
-  pipe.pipe gulp.dest cocos2dDir
+  pipe.pipe gulp.dest buildDir
 
   # app/** to src/app.js
   pipe = gulp
@@ -41,7 +43,7 @@ compileScripts = (isUglify) ->
   pipe = pipe.pipe uglify() if isUglify
   pipe.pipe gulp.dest getCocos2dPath 'src'
 
-  # res/** to cocos2dDir/res/**
+  # res/** to buildDir/res/**
   gulp
     .src 'res/**'
     .pipe gulp.dest getCocos2dPath 'res'
@@ -52,15 +54,9 @@ gulp.task 'debug', ->
 gulp.task 'release', ->
   compileScripts true
 
-gulp.task 'clean', ->
-  # TODO: clean
-  console.log 'gulp clean'
-  return
-  gulp
-    .src (path.join cocos2dDir, 'res'), read: false
-    .pipe rimraf()
-
 gulp.task 'publish', ->
+  console.log "Publish from: #{path.resolve getCocos2dPath()}\nto: #{path.resolve getPublishPath()}"
+
   gulp
     .src [
       getCocos2dPath 'index.html'
@@ -80,9 +76,5 @@ gulp.task 'publish', ->
     .src getCocos2dPath 'frameworks/cocos2d-html5/**'
     .pipe gulp.dest getPublishPath 'frameworks/cocos2d-html5'
 
-gulp.task 'doctor', ->
-  console.log 'gulp doctor: '
-  console.log config.load()
-
 gulp.task 'default', ->
-  console.log 'default task'
+  console.log 'Please use coco common line tool.'
