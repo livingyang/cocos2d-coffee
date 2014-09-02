@@ -13,17 +13,21 @@ Quick start
 ===========
 
 1. Create a cocos2d-js project at cocos2d_js_dir
-> 'cocos new -l js cocos2d_js_dir'
+
+        cocos new -l js cocos2d_js_dir
 
 2. Install cocos2d-coffee
-> `npm install -p cocos2d-coffee`
+
+        npm install -p cocos2d-coffee
 
 3. Create a cocos2d-coffee project
-> `coco create test`
+
+         coco create test
 
 4. Try build cocos2d-coffee project.
-> cd test
-> coco build path_to/cocos2d_js_dir
+
+        cd test
+        coco build path_to/cocos2d_js_dir
 
 5. Run cocos2d-js project.
 
