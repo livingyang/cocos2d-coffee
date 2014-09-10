@@ -2,6 +2,7 @@ fs = require 'fs'
 program = require 'commander'
 shell = require 'shelljs'
 path = require 'path'
+ncp = require 'ncp'
 
 config = (require './config').config
 
@@ -18,10 +19,12 @@ program
   .action (name) ->
     oldDir = path.join templatedir
     newDir = path.join './', name
-    shell.exec "cp -R #{oldDir} #{newDir}", ->
+
+    ncp oldDir, newDir, (err) ->
+      console.error err if err?
       console.log 'To view coco project:'
       console.log "  cd #{name}"
-      
+
 program
   .command 'build [DIR]'
   .description 'build app/*.coffee to DIR/src/app.js and copy res/ to DIR/res/.'

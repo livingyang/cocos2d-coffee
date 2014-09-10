@@ -1,6 +1,6 @@
 {
   "name": "cocos2d-coffee",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "use coffeescript to develop cocos2d-js project.",
   "bin": {
     "coco": "./bin/coco"
@@ -33,6 +33,7 @@
     "gulp-uglify": "^0.3.0",
     "gulp-wrapper": "^0.1.42",
     "nconf": "^0.6.9",
+    "ncp": "^0.6.0",
     "shelljs": "^0.3.0"
   }
 }
