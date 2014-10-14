@@ -18,7 +18,7 @@ Quick start
 
 2. Install cocos2d-coffee
 
-        npm install -p cocos2d-coffee
+        npm install -g cocos2d-coffee
 
 3. Create a cocos2d-coffee project
 
