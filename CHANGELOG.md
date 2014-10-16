@@ -6,6 +6,9 @@ _(none)_
 
 --------------------
 
+## v1.1 (2014-10-16)
+* [NEW]   remove .coco file
+
 ## v1.0.1 (2014-09-10)
 * [FIX]   create command cannot work at windows platform
 
@@ -13,4 +16,3 @@ _(none)_
 * [NEW]   Add build command
 * [NEW]   Add publish command
 * [NEW]   Add doctor command
-
