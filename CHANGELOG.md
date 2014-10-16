@@ -6,7 +6,10 @@ _(none)_
 
 --------------------
 
-## v1.1 (2014-10-16)
+## v1.1.1 (2014-10-16)
+* [FIX]   clean unnecessary npm project
+
+## v1.1.0 (2014-10-16)
 * [NEW]   remove .coco file
 
 ## v1.0.1 (2014-09-10)
