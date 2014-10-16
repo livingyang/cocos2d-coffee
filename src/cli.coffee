@@ -1,6 +1,5 @@
 fs = require 'fs'
 program = require 'commander'
-shell = require 'shelljs'
 path = require 'path'
 ncp = require 'ncp'
 
