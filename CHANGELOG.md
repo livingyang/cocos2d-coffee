@@ -1,7 +1,11 @@
 CHANGELOG
 =========
 
-## v1.2.0 (2014-11-16)
+## v1.3.0 (2014-11-11)
+* [NEW]   watch coco project by use coco build -w
+* [FIX]   add time format when build coco project
+
+## v1.2.0 (2014-11-10)
 * [NEW]   Add thirdparty js library like lodash
 * [FIX]   Update template to use custom coffee library and lodash
 
