@@ -1,10 +1,9 @@
 CHANGELOG
 =========
 
-## HEAD (Unreleased)
-_(none)_
-
---------------------
+## v1.2.0 (2014-11-16)
+* [NEW]   Add thirdparty js library like lodash
+* [FIX]   Update template to use custom coffee library and lodash
 
 ## v1.1.1 (2014-10-16)
 * [FIX]   clean unnecessary npm project

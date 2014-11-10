@@ -31,6 +31,12 @@ Quick start
 
 5. Run cocos2d-js project.
 
+How to add js library
+==============
+
+* put js file to lib folder
+* add js path to `jslist` at project.json
+
 FAQ
 ===
 

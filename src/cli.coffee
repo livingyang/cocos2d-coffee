@@ -59,6 +59,16 @@ compileScripts = (buildDir, isUglify) ->
     .src 'res/**'
     .pipe gulp.dest path.join buildDir, 'res'
 
+  # project.json to buildDir/res/project.json
+  gulp
+    .src 'project.json'
+    .pipe gulp.dest buildDir
+
+  # lib/** to buildDir/src/lib/**
+  gulp
+    .src 'lib/**'
+    .pipe gulp.dest path.join buildDir, 'src', 'lib'
+
 program
   .command 'build <buildDir>'
   .description 'build app/*.coffee to buildDir/src/app.js and copy res/ to buildDir/res/.'
