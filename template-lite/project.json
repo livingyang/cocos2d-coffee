@@ -1,0 +1,11 @@
+{
+    "debugMode"     : 1,
+    "frameRate"     : 60,
+    "id"            : "gameCanvas",
+    "renderMode"    : 1,
+
+    "jsList" : [
+        "src/lib/lodash.js",
+        "src/app.js"
+    ]
+}

@@ -12,7 +12,6 @@
 
     "jsList" : [
         "src/lib/lodash.js",
-        "src/resource.js",
         "src/app.js"
     ]
 }

@@ -12,11 +12,13 @@ wrapper = require 'gulp-wrapper'
 plumber = require 'gulp-plumber'
 watch = require 'gulp-watch'
 
-templatedir = path.join __dirname, '..', 'template'
-packagefile = path.join __dirname, '..', 'package.json'
+p = require path.join __dirname, '..', 'package.json'
+
+getTemplateDir = (isLite) ->
+  path.join __dirname, '..', if isLite then 'template-lite' else 'template'
 
 program
-  .version (JSON.parse fs.readFileSync packagefile).version
+  .version p.version
 
 ###
 coco create
@@ -24,14 +26,18 @@ coco create
 program
   .command('create <name>')
   .description('create a coco project.')
-  .action (name) ->
-    oldDir = path.join templatedir
+  .option '-l, --lite', 'create cocos2d-js-lite project.'
+  .action (name, command) ->
     newDir = path.join './', name
 
-    ncp oldDir, newDir, (err) ->
-      console.error err if err?
-      console.log 'To view coco project:'
-      console.log "  cd #{name}"
+    if fs.existsSync newDir
+      console.log "#{name}: Already exists"
+    else
+      ncp (getTemplateDir command.lite), newDir, (err) ->
+        if err?
+          console.error err
+        else
+          console.log "To view coco project:\n  cd #{name}"
 
 ###
 coco build
