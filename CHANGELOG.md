@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+## v1.4.1 (2014-11-24)
+* [FIX]   load main.js at window.onload event
+
 ## v1.4.0 (2014-11-13)
 * [NEW]   add cocos2d-js-lite template
 * [NEW]   create cocos2d-js-lite project by use coco create -l
