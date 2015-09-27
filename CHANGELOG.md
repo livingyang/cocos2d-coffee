@@ -1,6 +1,13 @@
 CHANGELOG
 =========
 
+## v2.0.1 (2015-09-28)
+* [FIX]   move busters.json to res/busters.json
+
+## v2.0.0 (2015-09-28)
+* [NEW]   add gulpfile.coffee to build project
+* [NEW]   now generator resource hash list to busters.json
+
 ## v1.4.1 (2014-11-24)
 * [FIX]   load main.js at window.onload event
 

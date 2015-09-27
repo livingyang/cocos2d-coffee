@@ -38,7 +38,7 @@ gulp.task 'copy-res', (dist = 'dist') ->
     .pipe gulp.dest path.join dist, 'res'
 
 gulp.task 'buster', ['build-main', 'build-app', 'copy-lib', 'copy-res'], (dist = 'dist') ->
-  bustersJson = 'busters.json'
+  bustersJson = 'res/busters.json'
 
   getObjectMd5 = (obj) ->
     crypto.createHash('md5').update(JSON.stringify obj).digest('Hex')
@@ -55,7 +55,7 @@ gulp.task 'buster', ['build-main', 'build-app', 'copy-lib', 'copy-res'], (dist =
         result[bustersJson] = getObjectMd5 result
 
         result
-    .pipe gulp.dest dist
+    .pipe gulp.dest "#{dist}/res"
 
 gulp.task 'watch', ->
   gulp.start 'buster'

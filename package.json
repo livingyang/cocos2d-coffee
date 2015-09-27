@@ -1,6 +1,6 @@
 {
   "name": "cocos2d-coffee",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "use coffeescript to develop cocos2d-js project.",
   "bin": {
     "coco": "./bin/coco"

@@ -27,8 +27,8 @@ program
         if err?
           console.error err
         else
-          console.log "To view coco project:\n  cd #{name}"
-          
+          console.log "To build coco project:\n\tcd #{name}\n\tnpm install\n\tgulp"
+
 ###
 coco doctor
 ###
