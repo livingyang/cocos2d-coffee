@@ -27,6 +27,7 @@ Quick start
 4. Try build cocos2d-coffee project.
 
         cd test
+        npm install
         coco build path_to/cocos2d_js_dir
 
 5. Run cocos2d-js project.
